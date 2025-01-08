@@ -18,7 +18,6 @@ function App() {
         />
 
         {/* Navbar */}
-        <Navbar />
 
         {/* Home Component */}
         <Home />  {/* Show Home content */}

@@ -1,35 +1,35 @@
-// src/components/HeaderImage.jsx
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
-const HeaderImage = ({ imageUrl, height = '200px', logoUrl }) => {
+const HeaderImage = ({ imageUrl, logoUrl, height }) => {
     return (
         <Box
             sx={{
-                height: height,
+                position: 'relative',
+                height: height || '200px',
                 backgroundImage: `url(${imageUrl})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                position: 'relative', // Để định vị logo
-                display: 'flex',
-                justifyContent: 'space-between', // Đẩy logo sang bên phải
-                alignItems: 'center', // Căn giữa logo theo chiều dọc
-                px: 2, // Padding ngang để tạo khoảng cách
             }}
         >
-            {/* Logo ở bên phải */}
-            {logoUrl && (
-                <Box
-                    component="img"
+            {/* Logo */}
+            <Box
+                sx={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                }}
+            >
+                <img
                     src={logoUrl}
                     alt="Logo"
-                    sx={{
-                        height: '80px', // Chiều cao logo to hơn
-                        width: 'auto', // Giữ tỷ lệ ảnh
-                        cursor: 'pointer', // Thêm con trỏ để tạo cảm giác tương tác
+                    style={{
+                        width: '150px', // Đặt kích thước cho logo
+                        height: 'auto',
                     }}
                 />
-            )}
+            </Box>
         </Box>
     );
 };
