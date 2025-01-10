@@ -2,10 +2,10 @@ import './App.css';
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { whiteTheme } from "./assets/Theme/WhiteTheme";
 import HeaderImage from "./assets/HeaderImage";
-import Home from './components/Home/Home';
+import Home from '../src/Components/Home/Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Post from "./components/Post/PostList";
-import PostDetail from "./components/Post/PostDetail";  // Import Router và Route
+import Post from "../src/Components/Post/PostList";
+import PostDetail from "../src/Components/Post/PostDetail";  // Import Router và Route
 
 function App() {
     return (
