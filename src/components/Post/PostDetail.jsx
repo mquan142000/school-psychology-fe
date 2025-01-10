@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Box, Typography, List, ListItem, ListItemText, ListItemIcon } from '@mui/material';
-import { Link, useParams } from 'react-router-dom';
-import Navbar from '../Home/Navbar'; // Import Navbar từ Home
+import { Box, Typography } from '@mui/material';
+import { useParams } from 'react-router-dom';
+import Navbar from '../Home/Navbar'; // Import Navbar
+import Sidebar from '../Home/Sidebar'; // Import Sidebar
 import postsData from '../../api/postDetail.json';
-import { Group, LibraryBooks, School } from '@mui/icons-material'; // Import biểu tượng
-import Footer from "../Home/Footer";
+import Footer from '../Home/Footer'; // Import Footer
 
 const PostDetail = () => {
     const { id } = useParams(); // Lấy id từ URL
@@ -12,19 +12,19 @@ const PostDetail = () => {
 
     const [isMenuVisible, setIsMenuVisible] = useState(true); // Quản lý trạng thái menu
 
-    const menuItems = [
-        { text: 'Tài liệu', icon: <LibraryBooks />, to: '/' },
-        { text: 'Tổ tư vấn', icon: <Group />, to: '/advisor' },  // Giả sử "Tổ tư vấn" dẫn đến '/advisor'
-        { text: 'Cộng đồng', icon: <School />, to: '/community' },  // Giả sử "Cộng đồng" dẫn đến '/community'
-    ];
-
     // Hàm để toggle menu
     const toggleCategoryVisibility = () => {
         setIsMenuVisible((prevState) => !prevState);
     };
 
     if (!post) {
-        return <Typography>Bài viết không tồn tại!</Typography>;
+        return (
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                <Typography variant="h5" color="error">
+                    Bài viết không tồn tại!
+                </Typography>
+            </Box>
+        );
     }
 
     return (
@@ -32,30 +32,10 @@ const PostDetail = () => {
             {/* Navbar */}
             <Navbar toggleCategoryVisibility={toggleCategoryVisibility} />
 
-            {/* Sidebar hiển thị/ẩn */}
+            {/* Sidebar và nội dung chính */}
             <Box sx={{ display: 'flex', flexGrow: 1 }}>
-                {isMenuVisible && (
-                    <Box sx={{ width: '200px', borderRight: '1px solid #ccc', padding: 2 }}>
-                        <List>
-                            {menuItems.map((item, index) => (
-                                <ListItem button key={index} sx={{ display: 'flex', alignItems: 'center' }}>
-                                    <ListItemIcon sx={{ minWidth: '35px' }}>
-                                        {item.icon}
-                                    </ListItemIcon>
-                                    {/* Dùng Link để điều hướng */}
-                                    <Link to={item.to} style={{ textDecoration: 'none' }}>
-                                        <ListItemText
-                                            primary={item.text}
-                                            sx={{ whiteSpace: 'nowrap' }} // Prevent line break
-                                        />
-                                    </Link>
-                                </ListItem>
-                            ))}
-                        </List>
-                    </Box>
-                )}
+                <Sidebar isMenuVisible={isMenuVisible} />
 
-                {/* Nội dung chính */}
                 <Box sx={{ flexGrow: 1, padding: 2, maxWidth: '800px', margin: 'auto' }}>
                     {/* Tiêu đề bài viết */}
                     <Typography variant="h3" sx={{ marginBottom: 2 }}>
@@ -79,10 +59,7 @@ const PostDetail = () => {
                                     }}
                                 />
                             )}
-                            <Typography
-                                variant="h5"
-                                sx={{ fontWeight: 'bold', marginTop: 2, marginBottom: 1 }}
-                            >
+                            <Typography variant="h5" sx={{ fontWeight: 'bold', marginTop: 2, marginBottom: 1 }}>
                                 {section.title}
                             </Typography>
                             <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
@@ -100,7 +77,9 @@ const PostDetail = () => {
                     </Typography>
                 </Box>
             </Box>
-            <Footer/>
+
+            {/* Footer */}
+            <Footer />
         </Box>
     );
 };
