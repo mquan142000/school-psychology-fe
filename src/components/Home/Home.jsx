@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Box, List, ListItem, ListItemText, ListItemIcon, Typography } from '@mui/material';
-import { Link } from 'react-router-dom'; // Import Link từ react-router-dom
+import { Link, useLocation } from 'react-router-dom'; // Import Link và useLocation
 import Navbar from './Navbar'; // Import Navbar
 import Post from "../Post/PostList"; // Import PsychologyPosts
 import { School, Group, LibraryBooks } from '@mui/icons-material'; // Các icon bạn muốn sử dụng
@@ -8,10 +8,11 @@ import Footer from "./Footer"; // Import Footer
 
 const Home = () => {
     const [isMenuVisible, setIsMenuVisible] = useState(true); // Quản lý trạng thái menu
+    const location = useLocation(); // Lấy đường dẫn hiện tại
 
     const menuItems = [
         { text: 'Tài liệu', icon: <LibraryBooks />, to: '/' }, // Đường dẫn trang chủ
-        { text: 'Tổ tư vấn', icon: <Group />, to: '/consulting' },
+        { text: 'Tổ tư vấn', icon: <Group />, to: '/consultant' },
         { text: 'Cộng đồng', icon: <School />, to: '/community' },
     ];
 
@@ -42,7 +43,16 @@ const Home = () => {
                     >
                         <List>
                             {menuItems.map((item, index) => (
-                                <ListItem button key={index} sx={{ display: 'flex', alignItems: 'center' }}>
+                                <ListItem
+                                    button
+                                    key={index}
+                                    sx={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        backgroundColor: location.pathname === item.to ? '#e0f7fa' : 'transparent', // Nổi bật mục đang chọn
+                                        borderRadius: 1,
+                                    }}
+                                >
                                     <ListItemIcon sx={{ minWidth: '35px' }}>
                                         {item.icon}
                                     </ListItemIcon>
@@ -50,7 +60,10 @@ const Home = () => {
                                     <Link to={item.to} style={{ textDecoration: 'none' }}>
                                         <ListItemText
                                             primary={item.text}
-                                            sx={{ whiteSpace: 'nowrap' }} // Prevent line break
+                                            sx={{
+                                                whiteSpace: 'nowrap', // Prevent line break
+                                                color: location.pathname === item.to ? '#00796b' : 'inherit', // Màu chữ khi chọn
+                                            }}
                                         />
                                     </Link>
                                 </ListItem>
