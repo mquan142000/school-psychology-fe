@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "author": "Nguyễn Văn A",
+    "publishedDate": "2025-01-09",
+    "sections": [
+      {
+        "title": "Tổng quan về khái niệm tâm lý học đường",
+        "content": "Nội dung dưới đây sẽ giúp chúng ta hiểu hơn về lĩnh vực tâm lý học đường thông qua các khái niệm và thực trạng hiện nay trong các trường học. Cụ thể:",
+        "image": "https://cdn.pixabay.com/photo/2016/03/09/15/29/books-1246674_640.jpg"
+      },
+      {
+        "title": "Khái niệm tâm lý học đường là gì?",
+        "content": "Tâm lý học đường là một lĩnh vực nghiên cứu về các vấn đề tâm lý của học sinh trong môi trường học đường, bao gồm cả cảm xúc, hành vi và các yếu tố ảnh hưởng đến quá trình học tập của học sinh.",
+        "image": "https://cdn.pixabay.com/photo/2020/05/23/20/08/books-5211309_640.jpg"
+      }
+    ]
+  },
+
+  {
+    "id": 2,
+    "title": "Bài viết về tâm lý 2",
+    "content": "Nội dung chi tiết của bài viết về tâm lý 2.",
+    "author": "Nguyễn Văn B",
+    "publishedDate": "2025-01-10",
+    "image": "https://example.com/image2.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Bài viết về tâm lý 3",
+    "content": "Nội dung chi tiết của bài viết về tâm lý 3.",
+    "author": "Nguyễn Văn C",
+    "publishedDate": "2025-01-11",
+    "image": "https://example.com/image3.jpg"
+  }
+]
