@@ -1,7 +1,10 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 
-const HeaderImage = ({ imageUrl, logoUrl, height }) => {
+const HeaderImage = ({ height }) => {
+    const imageUrl = require('./layout/background.jpg'); // Đường dẫn ảnh nền
+    const logoUrl = require('./layout/logo.png') // Đường dẫn logo
+
     return (
         <Box
             sx={{
@@ -16,16 +19,16 @@ const HeaderImage = ({ imageUrl, logoUrl, height }) => {
             <Box
                 sx={{
                     position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
+                    top: '50%', // Đặt logo vào giữa chiều cao
+                    left: '55px', // Đặt logo cách trái một khoảng
+                    transform: 'translateY(-50%)', // Đảm bảo logo luôn căn giữa theo chiều dọc
                 }}
             >
                 <img
                     src={logoUrl}
                     alt="Logo"
                     style={{
-                        width: '150px', // Đặt kích thước cho logo
+                        width: '100px', // Đặt kích thước cho logo
                         height: 'auto',
                     }}
                 />
