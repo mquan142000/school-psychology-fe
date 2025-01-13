@@ -4,7 +4,7 @@ import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import SearchIcon from '@mui/icons-material/Search';
 import { AccountCircle, Info, EventNote, Logout } from '@mui/icons-material';
 
-export const Navbar = ({ toggleCategoryVisibility, cartItemsCount = 0, onSearch }) => {
+export const Navbar = ({ toggleMenu, cartItemsCount = 0, onSearch }) => {
     const [searchText, setSearchText] = useState('');
     const [anchorEl, setAnchorEl] = useState(null); // State để điều khiển Menu
 
@@ -41,7 +41,7 @@ export const Navbar = ({ toggleCategoryVisibility, cartItemsCount = 0, onSearch 
             }}
         >
             {/* Icon để toggle sidebar */}
-            <IconButton onClick={toggleCategoryVisibility} sx={{ color: '#ffffff' }} aria-label="Toggle categories">
+            <IconButton onClick={toggleMenu} sx={{ color: '#ffffff' }} aria-label="Toggle categories">
                 <FormatListBulletedIcon />
             </IconButton>
 
