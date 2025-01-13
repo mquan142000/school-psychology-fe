@@ -1,8 +1,7 @@
-import './App.css';
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import React, { useState } from 'react';
+import { CssBaseline, ThemeProvider, Box } from '@mui/material';
 import { whiteTheme } from "./assets/theme/WhiteTheme";
 import HeaderImage from "./assets/HeaderImage";
-import { Box } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Post from "./components/post/PostList";
 import PostDetail from "./components/post/PostDetail";
@@ -14,20 +13,26 @@ import Footer from './components/home/Footer'; // Footer
 import Home from './components/home/Home'; // home content
 
 function App() {
+    const [isMenuVisible, setIsMenuVisible] = useState(true); // Default: Menu visible
+
+    const toggleMenu = () => {
+        setIsMenuVisible(!isMenuVisible); // Toggle visibility of menu
+    };
+
     return (
         <Router>
             <ThemeProvider theme={whiteTheme}>
                 <CssBaseline />
-                <HeaderImage/>
+                <HeaderImage />
 
                 <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-                    {/* Navbar */}
-                    <Navbar />
+                    {/* Navbar with toggleMenu function */}
+                    <Navbar toggleMenu={toggleMenu} />
 
                     {/* Sidebar và Nội dung chính */}
                     <Box sx={{ display: 'flex', flexGrow: 1 }}>
-                        {/* Sidebar */}
-                        <Sidebar isMenuVisible={true} />
+                        {/* Sidebar with visibility controlled by isMenuVisible */}
+                        <Sidebar isMenuVisible={isMenuVisible} />
 
                         {/* Nội dung chính */}
                         <Box sx={{ flexGrow: 1, paddingLeft: '220px', padding: 2 }}>

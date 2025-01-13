@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Typography, List, ListItem, ListItemText, ListItemIcon, Button } from '@mui/material';
 import { Link, useParams } from 'react-router-dom';
-import Navbar from '../home/Navbar';
 import counselorDetail from '../../api/consultant/counselorDetail.json';
-import { Group, LibraryBooks, School } from '@mui/icons-material';
-import Footer from "../home/Footer";
 
 const ConsultantDetail = () => {
     const { id } = useParams();
