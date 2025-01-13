@@ -4,17 +4,18 @@ import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import SearchIcon from '@mui/icons-material/Search';
 import { AccountCircle, Info, EventNote, Logout } from '@mui/icons-material';
 
-export const Navbar = ({ toggleCategoryVisibility, cartItemsCount = 0, onSearch }) => {
+export const Navbar = ({ onToggleSidebar}) => {
     const [searchText, setSearchText] = useState('');
     const [anchorEl, setAnchorEl] = useState(null); // State để điều khiển Menu
+    const [isMenuVisible, setIsMenuVisible] = useState(true); // State để điều khiển hiển thị Sidebar
 
     // Hàm xử lý khi giá trị ô input thay đổi
-    const handleSearchChange = (event) => {
-        setSearchText(event.target.value);
-        if (onSearch) {
-            onSearch(event.target.value); // Gọi hàm tìm kiếm từ props
-        }
-    };
+    // const handleSearchChange = (event) => {
+    //     setSearchText(event.target.value);
+    //     if (onSearch) {
+    //         onSearch(event.target.value); // Gọi hàm tìm kiếm từ props
+    //     }
+    // };
 
     // Mở Menu
     const handleAccountClick = (event) => {
@@ -24,6 +25,11 @@ export const Navbar = ({ toggleCategoryVisibility, cartItemsCount = 0, onSearch 
     // Đóng Menu
     const handleMenuClose = () => {
         setAnchorEl(null);
+    };
+
+    // Toggle Sidebar visibility
+    const toggleCategoryVisibility = () => {
+        setIsMenuVisible(!isMenuVisible); // Thay đổi trạng thái hiển thị Sidebar
     };
 
     return (
@@ -41,7 +47,7 @@ export const Navbar = ({ toggleCategoryVisibility, cartItemsCount = 0, onSearch 
             }}
         >
             {/* Icon để toggle sidebar */}
-            <IconButton onClick={toggleCategoryVisibility} sx={{ color: '#ffffff' }} aria-label="Toggle categories">
+            <IconButton onClick={onToggleSidebar} sx={{ color: '#ffffff' }} aria-label="Toggle categories">
                 <FormatListBulletedIcon />
             </IconButton>
 
@@ -61,7 +67,7 @@ export const Navbar = ({ toggleCategoryVisibility, cartItemsCount = 0, onSearch 
                         variant="standard"
                         placeholder="Tra cứu..."
                         value={searchText}
-                        onChange={handleSearchChange}
+                        // onChange={handleSearchChange}
                         InputProps={{
                             disableUnderline: true, // Bỏ gạch chân
                         }}

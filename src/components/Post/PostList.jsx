@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Box, List, ListItem, ListItemText, Card, CardContent, CardMedia, Typography, Button } from '@mui/material';
+import { Box, List, ListItem, Card, CardContent, CardMedia, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import postsData from '../../api/postList.json'; // Import file JSON chứa các bài viết
 
 const PostsList = () => {
     const [posts, setPosts] = useState([]);
-    const navigate = useNavigate(); // Để điều hướng khi nhấn vào nút "Xem chi tiết"
+    const navigate = useNavigate(); // Để điều hướng khi nhấn vào tiêu đề bài viết
 
     useEffect(() => {
         // Giả sử bạn đang lấy dữ liệu từ file JSON (hoặc API)
@@ -30,29 +30,24 @@ const PostsList = () => {
                                 image={post.image}
                                 alt={post.title}
                             />
-                            <CardContent sx={{ flex: 1 }}>
-                                <Typography variant="h5">{post.title}</Typography>
-                                <Typography variant="body2" color="text.secondary" sx={{ marginBottom: 2 }}>
-                                    {post.content.substring(0, 100)}...
-                                </Typography>
-                                <Button
-                                    variant="contained"
+                            <CardContent sx={{ flex: 1, paddingTop: '16px' }}> {/* Điều chỉnh paddingTop */}
+                                {/* Thay đổi để khi nhấn vào tên bài viết sẽ điều hướng đến trang chi tiết */}
+                                <Typography
+                                    variant="h5"
                                     sx={{
-                                        backgroundColor: '#1E90FF', // Màu nền
-                                        color: '#fff', // Màu chữ
-                                        fontSize: '0.8rem', // Kích thước chữ nhỏ hơn
-                                        padding: '6px 8px', // Padding nhỏ hơn
-                                        minWidth: 'unset', // Gỡ bỏ chiều rộng tối thiểu mặc định
+                                        cursor: 'pointer',
+                                        color: 'black', // Màu chữ đen
                                         '&:hover': {
-                                            backgroundColor: '#00BFFF', // Màu nền khi hover
+                                            color: '#1E90FF', // Màu chữ xanh khi hover
                                         },
                                     }}
                                     onClick={() => handleViewPost(post.id)} // Điều hướng tới chi tiết bài viết
                                 >
-                                    Xem chi tiết
-                                </Button>
-
-
+                                    {post.title}
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary" sx={{ marginBottom: 2 }}>
+                                    {post.content.substring(0, 100)}...
+                                </Typography>
                             </CardContent>
                         </Card>
                     </ListItem>

@@ -2,26 +2,58 @@ import './App.css';
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { whiteTheme } from "./assets/Theme/WhiteTheme";
 import HeaderImage from "./assets/HeaderImage";
-import Home from '../src/Components/Home/Home';
+import { Box } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Post from "../src/Components/Post/PostList";
-import PostDetail from "../src/Components/Post/PostDetail";  // Import Router và Route
+import Post from "./components/Post/PostList";
+import PostDetail from "./components/Post/PostDetail";
+// import SchoolCounselor from "./components/Consultant/SchoolCounselor";
+// import SchoolCounselorDetail from "./components/Consultant/SchoolCounselor";
+import Sidebar from "./components/Home/Sidebar"; // Sidebar
+import Navbar from './components/Home/Navbar'; // Navbar
+import Footer from './components/Home/Footer'; // Footer
+import Home from './components/Home/Home'; // home content
+import React, { useState } from 'react';
 
 function App() {
+    const [isMenuVisible, setIsMenuVisible] = useState(true); // Trạng thái để điều khiển Sidebar
+
+    // Hàm toggle hiển thị/ẩn Sidebar khi click vào icon
+    const toggleSidebar = () => {
+        setIsMenuVisible(!isMenuVisible);
+    };
+
     return (
-        <Router> {/* Bao bọc ứng dụng với BrowserRouter */}
+        <Router>
             <ThemeProvider theme={whiteTheme}>
                 <CssBaseline />
+                <HeaderImage />
 
-                <HeaderImage height="200px"/>
+                <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+                    {/* Navbar */}
+                    <Navbar onToggleSidebar={toggleSidebar} />
 
-                <Routes>
-                    <Route path="/" element={<Home />} /> {/* Trang chủ */}
-                    <Route path="/posts" element={<Post/>}/>
-                    <Route path="/post/:id" element={<PostDetail />} /> {/* Trang chi tiết bài viết */}
-                </Routes>
+                    {/* Sidebar và Nội dung chính */}
+                    <Box sx={{ display: 'flex', flexGrow: 1 }}>
+                        {/* Sidebar */}
+                        <Sidebar isMenuVisible={isMenuVisible} />
 
+                        {/* Nội dung chính */}
+                        <Box sx={{ flexGrow: 1, paddingLeft: '220px', padding: 2 }}>
+                            <Routes>
+                                <Route path="/" element={<Home />} />
+                                <Route path="/consultant" element={<SchoolCounselor />} />
+                                <Route path="/consultant/:id" element={<SchoolCounselorDetail />} />
+                                <Route path="/posts" element={<Post />} />
+                                <Route path="/post/:id" element={<PostDetail />} />
+                            </Routes>
+                        </Box>
+                    </Box>
+
+                    {/* Footer */}
+                    <Footer />
+                </Box>
             </ThemeProvider>
+            
         </Router>
     );
 }
