@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 
 const HeaderImage = ({ height }) => {
     const imageUrl = require('./layout/background.jpg'); // Đường dẫn ảnh nền
-    const logoUrl = require('./layout/logo.png') // Đường dẫn logo
+    const logoUrl = require('./layout/logo.png'); // Đường dẫn logo
 
     return (
         <Box
@@ -12,23 +12,24 @@ const HeaderImage = ({ height }) => {
                 height: height || '200px',
                 backgroundImage: `url(${imageUrl})`,
                 backgroundSize: 'cover',
-                backgroundPosition: 'center',
+                backgroundPosition: 'center', // Hoặc 'top' nếu ưu tiên phần trên
+                backgroundRepeat: 'no-repeat',
             }}
         >
             {/* Logo */}
             <Box
                 sx={{
                     position: 'absolute',
-                    top: '50%', // Đặt logo vào giữa chiều cao
-                    left: '55px', // Đặt logo cách trái một khoảng
-                    transform: 'translateY(-50%)', // Đảm bảo logo luôn căn giữa theo chiều dọc
+                    top: '50%',
+                    left: '55px',
+                    transform: 'translateY(-50%)',
                 }}
             >
                 <img
                     src={logoUrl}
                     alt="Logo"
                     style={{
-                        width: '100px', // Đặt kích thước cho logo
+                        width: '100px',
                         height: 'auto',
                     }}
                 />

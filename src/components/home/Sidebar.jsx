@@ -1,18 +1,16 @@
 import React from 'react';
 import { Box, List, ListItem, ListItemText, ListItemIcon } from '@mui/material';
-import { Link, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom'; // Sử dụng NavLink thay vì Link
 import { LibraryBooks, Group, School } from '@mui/icons-material';
 
 const Sidebar = ({ isMenuVisible }) => {
-    const location = useLocation(); // Lấy đường dẫn hiện tại
-
     const menuItems = [
         { text: 'Tài liệu', icon: <LibraryBooks />, to: '/' },
         { text: 'Tổ tư vấn', icon: <Group />, to: '/consultant' },
         { text: 'Cộng đồng', icon: <School />, to: '/community' },
     ];
 
-    if (!isMenuVisible) return null; // Nếu isMenuVisible là false, không render Sidebar
+    if (!isMenuVisible) return null; // Nếu isMenuVisible là false, không hiển thị Sidebar
 
     return (
         <Box
@@ -28,33 +26,36 @@ const Sidebar = ({ isMenuVisible }) => {
             }}
         >
             <List>
-                {menuItems.map((item, index) => {
-                    const isActive = location.pathname === item.to; // Kiểm tra mục đang được chọn
-                    return (
-                        <Link
-                            key={index}
+                {menuItems.map((item, index) => (
+                    <ListItem
+                        button
+                        key={index}
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center', // Căn giữa nội dung
+                            height: '60px', // Đặt chiều cao cố định cho các ô
+                            borderRadius: 1,
+                        }}
+                    >
+                        <NavLink
                             to={item.to}
-                            style={{
+                            style={({ isActive }) => ({
                                 textDecoration: 'none',
-                                color: 'inherit', // Giữ nguyên màu chữ
-                            }}
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center', // Căn giữa cả icon và text
+                                padding: '8px 20px', // Mở rộng padding để ô lớn hơn
+                                borderRadius: '8px', // Bo tròn góc cho cả ô
+                                backgroundColor: isActive ? '#00BFFF' : 'transparent', // Màu nền xanh nước biển khi chọn
+                                color: isActive ? '#ffffff' : '#696969', // Chữ trắng khi chọn, chữ nhạt khi không chọn
+                            })}
                         >
-                            <ListItem
-                                button
-                                sx={{
-                                    display: 'flex',
-                                    alignItems: 'center', // Căn giữa icon và chữ theo chiều dọc
-                                    padding: '12px 16px',
-                                    backgroundColor: isActive ? '#1E90FF' : 'transparent', // Màu nền xanh nước biển khi chọn
-                                    borderRadius: '8px', // Bo góc
-                                }}
-                            >
+                            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
                                 <ListItemIcon
                                     sx={{
-                                        minWidth: '35px', // Giữ khoảng cách nhất quán giữa icon và text
-                                        display: 'flex',
-                                        justifyContent: 'center',
-                                        color: isActive ? '#fff' : '#696969', // Đổi màu icon thành trắng khi chọn
+                                        minWidth: '35px',
+                                        color: 'inherit', // Để màu icon kế thừa từ color của NavLink
                                     }}
                                 >
                                     {item.icon}
@@ -62,16 +63,16 @@ const Sidebar = ({ isMenuVisible }) => {
                                 <ListItemText
                                     primary={item.text}
                                     sx={{
-                                        marginLeft: '10px', // Khoảng cách giữa icon và chữ
-                                        textAlign: 'left', // Căn lề chữ bên trái
-                                        fontWeight: isActive ? 'bold' : 'normal', // Tô đậm chữ nếu mục được chọn
-                                        color: isActive ? '#fff' : '#696969', // Đổi màu chữ thành trắng khi chọn
+                                        whiteSpace: 'nowrap',
+                                        color: 'inherit', // Để không bị ghi đè
+                                        flexGrow: 1, // Tạo không gian giữa icon và text
+                                        textAlign: 'center', // Căn giữa chữ
                                     }}
                                 />
-                            </ListItem>
-                        </Link>
-                    );
-                })}
+                            </Box>
+                        </NavLink>
+                    </ListItem>
+                ))}
             </List>
         </Box>
     );

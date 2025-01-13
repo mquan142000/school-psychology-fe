@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Box, List, ListItem, Card, CardContent, CardMedia, Typography } from '@mui/material';
+import { Box, List, ListItem, ListItemText, Card, CardContent, CardMedia, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import postsData from '../../api/postList.json'; // Import file JSON chứa các bài viết
 
 const PostsList = () => {
     const [posts, setPosts] = useState([]);
-    const navigate = useNavigate(); // Để điều hướng khi nhấn vào tiêu đề bài viết
+    const navigate = useNavigate(); // Để điều hướng khi nhấn vào tên bài viết
 
     useEffect(() => {
         // Giả sử bạn đang lấy dữ liệu từ file JSON (hoặc API)
@@ -30,16 +30,12 @@ const PostsList = () => {
                                 image={post.image}
                                 alt={post.title}
                             />
-                            <CardContent sx={{ flex: 1, paddingTop: '16px' }}> {/* Điều chỉnh paddingTop */}
-                                {/* Thay đổi để khi nhấn vào tên bài viết sẽ điều hướng đến trang chi tiết */}
+                            <CardContent sx={{ flex: 1 }}>
+                                {/* Chuyển title thành liên kết để nhấn vào xem chi tiết */}
                                 <Typography
                                     variant="h5"
                                     sx={{
                                         cursor: 'pointer',
-                                        color: 'black', // Màu chữ đen
-                                        '&:hover': {
-                                            color: '#1E90FF', // Màu chữ xanh khi hover
-                                        },
                                     }}
                                     onClick={() => handleViewPost(post.id)} // Điều hướng tới chi tiết bài viết
                                 >
