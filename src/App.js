@@ -1,23 +1,25 @@
 import './App.css';
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import { whiteTheme } from "./assets/Theme/WhiteTheme";
+import { whiteTheme } from "./assets/theme/WhiteTheme";
 import HeaderImage from "./assets/HeaderImage";
 import { Box } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Post from "./components/Post/PostList";
-import PostDetail from "./components/Post/PostDetail";
-import SchoolCounselor from "./components/Consultant/SchoolCounselor";
-import SchoolCounselorDetail from "./components/Consultant/SchoolCounselorDetail";
-import Sidebar from "./components/Home/Sidebar"; // Sidebar
-import Navbar from './components/Home/Navbar'; // Navbar
-import Footer from './components/Home/Footer'; // Footer
-import Home from './components/Home/Home'; // Home content
+import Post from "./components/post/PostList";
+import PostDetail from "./components/post/PostDetail";
+import SchoolCounselor from "./components/consultant/SchoolCounselor";
+import SchoolCounselorDetail from "./components/consultant/SchoolCounselorDetail";
+import Sidebar from "./components/home/Sidebar"; // Sidebar
+import Navbar from './components/home/Navbar'; // Navbar
+import Footer from './components/home/Footer'; // Footer
+import Home from './components/home/Home'; // home content
 
 function App() {
     return (
         <Router>
             <ThemeProvider theme={whiteTheme}>
                 <CssBaseline />
+                <HeaderImage/>
+
                 <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
                     {/* Navbar */}
                     <Navbar />

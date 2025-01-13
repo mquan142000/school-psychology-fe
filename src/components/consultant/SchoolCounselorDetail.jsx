@@ -1,26 +1,19 @@
 import React, { useState } from 'react';
 import { Box, Typography, List, ListItem, ListItemText, ListItemIcon, Button } from '@mui/material';
 import { Link, useParams } from 'react-router-dom';
-import Navbar from '../Home/Navbar';
+import Navbar from '../home/Navbar';
 import counselorDetail from '../../api/consultant/counselorDetail.json';
 import { Group, LibraryBooks, School } from '@mui/icons-material';
-import Footer from "../Home/Footer";
+import Footer from "../home/Footer";
 
 const ConsultantDetail = () => {
     const { id } = useParams();
     const consultant = counselorDetail.find((consultant) => consultant.id === parseInt(id));
 
-    const [isMenuVisible, setIsMenuVisible] = useState(true);
 
-    const menuItems = [
-        { text: 'Tài liệu', icon: <LibraryBooks />, to: '/' },
-        { text: 'Tổ tư vấn', icon: <Group />, to: '/consultant' },
-        { text: 'Cộng đồng', icon: <School />, to: '/community' },
-    ];
 
-    const toggleCategoryVisibility = () => {
-        setIsMenuVisible((prevState) => !prevState);
-    };
+
+
 
     if (!consultant) {
         return <Typography>Tư vấn viên không tồn tại!</Typography>;
@@ -28,33 +21,7 @@ const ConsultantDetail = () => {
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-            <Navbar toggleCategoryVisibility={toggleCategoryVisibility} />
 
-            <Box sx={{ display: 'flex', flexGrow: 1 }}>
-                {isMenuVisible && (
-                    <Box sx={{
-                        width: '250px',
-                        borderRight: '1px solid #ccc',
-                        padding: 2,
-                        backgroundColor: '#f4f4f4',
-                    }}>
-                        <List>
-                            {menuItems.map((item, index) => (
-                                <ListItem button key={index} sx={{ display: 'flex', alignItems: 'center' }}>
-                                    <ListItemIcon sx={{ minWidth: '35px' }}>
-                                        {item.icon}
-                                    </ListItemIcon>
-                                    <Link to={item.to} style={{ textDecoration: 'none' }}>
-                                        <ListItemText
-                                            primary={item.text}
-                                            sx={{ whiteSpace: 'nowrap' }}
-                                        />
-                                    </Link>
-                                </ListItem>
-                            ))}
-                        </List>
-                    </Box>
-                )}
 
                 <Box sx={{
                     flexGrow: 1,
@@ -158,9 +125,7 @@ const ConsultantDetail = () => {
                         </Typography>
                     </Box>
                 </Box>
-            </Box>
 
-            <Footer />
         </Box>
     );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
-import Post from '../Post/PostList'; // Import PostList
+import Post from '../post/PostList'; // Import PostList
 
 const Home = () => {
     return (
