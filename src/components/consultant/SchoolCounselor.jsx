@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
     Box,
     Card,
@@ -6,11 +6,10 @@ import {
     Typography,
     Button,
     Avatar,
-    Grid
+    Grid,
 } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
-// Dữ liệu mẫu các consultant
 const consultantData = [
     {
         id: 1,
@@ -38,39 +37,37 @@ const consultantData = [
     },
 ];
 
-const ConsultantList = () => {
+const SchoolCounselor = () => {
     const [selectedConsultant, setSelectedConsultant] = useState(null);
-    const navigate = useNavigate();
 
-    // Điều hướng đến trang chi tiết consultant
-    const handleViewConsultant = (id) => {
-        navigate(`/consultant/${id}`);
-    };
-
-    // Đặt lịch hẹn
     const handleBookAppointment = (consultant) => {
         setSelectedConsultant(consultant);
         alert(`Bạn đã chọn ${consultant.name} để đặt lịch!`);
     };
 
     return (
-        <Box sx={{ flexGrow: 1, padding: 3 }}>
-            <Typography variant="h4" gutterBottom align="center" sx={{ marginBottom: 4 }}>
-                Danh sách các Consultant
+        <Box sx={{flexGrow: 1, padding: 3}}>
+            <Typography variant="h4" align="center" gutterBottom sx={{mb: 4}}>
+                Tổ tư vấn
             </Typography>
 
             <Grid container spacing={3}>
                 {consultantData.map((consultant) => (
                     <Grid item xs={12} sm={6} md={3} key={consultant.id}>
-                        <Card sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 2 }}>
-                            {/* Avatar */}
+                        <Card
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                padding: 2,
+                            }}
+                        >
                             <Avatar
                                 alt={consultant.name}
                                 src={consultant.avatarUrl}
-                                sx={{ width: 100, height: 100, marginBottom: 2 }}
+                                sx={{width: 100, height: 100, mb: 2}}
                             />
                             <CardContent>
-                                {/* Tên và lĩnh vực chuyên môn */}
                                 <Typography
                                     variant="h6"
                                     align="center"
@@ -90,14 +87,12 @@ const ConsultantList = () => {
                                     {consultant.specialization}
                                 </Typography>
                             </CardContent>
-                            {/* Nút đặt lịch */}
                             <Button
                                 variant="contained"
                                 sx={{
                                     mt: 2,
                                     backgroundColor: '#1E90FF',
                                     textTransform: 'none',
-                                    color: '#fff',
                                     fontWeight: 'bold',
                                     fontSize: '14px',
                                     padding: '6px 12px',
@@ -117,4 +112,4 @@ const ConsultantList = () => {
     );
 };
 
-export default ConsultantList;
+export default SchoolCounselor;
