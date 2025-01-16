@@ -1,9 +1,9 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import {Box} from '@mui/material';
 
-const HeaderImage = ({ height }) => {
-    const imageUrl = require('./layout/background.jpg'); // Đường dẫn ảnh nền
-    const logoUrl = require('./layout/logo.png'); // Đường dẫn logo
+const HeaderImage = ({height}) => {
+    const imageUrl = require('./layout/background.jpg');
+    const logoUrl = require('./layout/logo.png');
 
     return (
         <Box
@@ -12,11 +12,10 @@ const HeaderImage = ({ height }) => {
                 height: height || '200px',
                 backgroundImage: `url(${imageUrl})`,
                 backgroundSize: 'cover',
-                backgroundPosition: 'center', // Hoặc 'top' nếu ưu tiên phần trên
+                backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
             }}
         >
-            {/* Logo */}
             <Box
                 sx={{
                     position: 'absolute',

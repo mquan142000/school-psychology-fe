@@ -1,18 +1,12 @@
-const { createTheme } = require("@mui/material");
+const {createTheme} = require("@mui/material");
 
 export const whiteTheme = createTheme({
     palette: {
         mode: "light",
-        primary: {
-            main: "#e91e63"
-        },
-        secondary: {
-            main: "#5A20CB"
-        },
-        light:{
+        light: {
             main: "#FFF"
         },
-        background:{
+        background: {
             main: '#FFF',
             default: "#FFF",
             paper: "#FFF"

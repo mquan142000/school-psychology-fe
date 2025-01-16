@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import {Box, Typography} from '@mui/material';
+import {Link} from 'react-router-dom';
 
 const Footer = () => {
     return (
@@ -15,8 +15,8 @@ const Footer = () => {
                 &copy; 2025 Tâm lý học đường.
             </Typography>
             <Typography variant="body2">
-                <Link to="/" style={{ textDecoration: 'none', color: '#fff' }}>Trang chủ</Link> |
-                <Link to="/contact" style={{ textDecoration: 'none', color: '#fff' }}> Contact</Link>
+                <Link to="/" style={{textDecoration: 'none', color: '#fff'}}>Trang chủ</Link> |
+                <Link to="/contact" style={{textDecoration: 'none', color: '#fff'}}> Liên hệ</Link>
             </Typography>
         </Box>
     );

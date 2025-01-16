@@ -1,29 +1,25 @@
-import React, { useState } from 'react';
-import { Box, IconButton, Badge, TextField, Menu, MenuItem, ListItemIcon } from '@mui/material';
+import React, {useState} from 'react';
+import {Box, IconButton, TextField, Menu, MenuItem, ListItemIcon} from '@mui/material';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import SearchIcon from '@mui/icons-material/Search';
-import { AccountCircle, Info, EventNote, Logout } from '@mui/icons-material';
+import {AccountCircle, Info, EventNote, Logout} from '@mui/icons-material';
+import {Link} from 'react-router-dom';
 
-export const Navbar = ({ toggleMenu, cartItemsCount = 0, onSearch }) => {
+export const Navbar = ({onToggleSidebar}) => {
     const [searchText, setSearchText] = useState('');
-    const [anchorEl, setAnchorEl] = useState(null); // State để điều khiển Menu
+    const [anchorEl, setAnchorEl] = useState(null);
 
-    // Hàm xử lý khi giá trị ô input thay đổi
-    const handleSearchChange = (event) => {
-        setSearchText(event.target.value);
-        if (onSearch) {
-            onSearch(event.target.value); // Gọi hàm tìm kiếm từ props
-        }
-    };
-
-    // Mở Menu
     const handleAccountClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
 
-    // Đóng Menu
     const handleMenuClose = () => {
         setAnchorEl(null);
+    };
+
+    const handleLogout = () => {
+        console.log("Đăng xuất");
+        handleMenuClose();
     };
 
     return (
@@ -37,17 +33,14 @@ export const Navbar = ({ toggleMenu, cartItemsCount = 0, onSearch }) => {
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 py: 1.5,
-                px: { xs: 2, lg: 10 },
+                px: {xs: 2, lg: 10},
             }}
         >
-            {/* Icon để toggle sidebar */}
-            <IconButton onClick={toggleMenu} sx={{ color: '#ffffff' }} aria-label="Toggle categories">
-                <FormatListBulletedIcon />
+            <IconButton onClick={onToggleSidebar} sx={{color: '#ffffff'}} aria-label="Toggle categories">
+                <FormatListBulletedIcon/>
             </IconButton>
 
-            {/* Các thành phần bên phải của Navbar */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1, lg: 4 } }}>
-                {/* Box chứa icon và ô input */}
+            <Box sx={{display: 'flex', alignItems: 'center', gap: {xs: 1, lg: 4}}}>
                 <Box
                     sx={{
                         display: 'flex',
@@ -61,9 +54,9 @@ export const Navbar = ({ toggleMenu, cartItemsCount = 0, onSearch }) => {
                         variant="standard"
                         placeholder="Tra cứu..."
                         value={searchText}
-                        onChange={handleSearchChange}
+                        onChange={(event) => setSearchText(event.target.value)}
                         InputProps={{
-                            disableUnderline: true, // Bỏ gạch chân
+                            disableUnderline: true,
                         }}
                         sx={{
                             fontSize: '0.9rem',
@@ -71,22 +64,20 @@ export const Navbar = ({ toggleMenu, cartItemsCount = 0, onSearch }) => {
                             padding: '0 8px',
                         }}
                     />
-                    <IconButton sx={{ p: 0.5 }} aria-label="Search">
-                        <SearchIcon sx={{ fontSize: '1.8rem', color: '#1E90FF' }} />
+                    <IconButton sx={{p: 0.5}} aria-label="Search">
+                        <SearchIcon sx={{fontSize: '1.8rem', color: '#1E90FF'}}/>
                     </IconButton>
                 </Box>
 
-                {/* AccountCircle Icon */}
                 <IconButton
                     aria-label="Account"
                     onClick={handleAccountClick}
                     aria-controls="account-menu"
                     aria-haspopup="true"
                 >
-                    <AccountCircle sx={{ fontSize: '3rem', color: '#ffffff' }} />
+                    <AccountCircle sx={{fontSize: '3rem', color: '#ffffff'}}/>
                 </IconButton>
 
-                {/* Dropdown Menu */}
                 <Menu
                     id="account-menu"
                     anchorEl={anchorEl}
@@ -95,19 +86,23 @@ export const Navbar = ({ toggleMenu, cartItemsCount = 0, onSearch }) => {
                 >
                     <MenuItem onClick={handleMenuClose}>
                         <ListItemIcon>
-                            <Info fontSize="small" />
+                            <Info fontSize="small"/>
                         </ListItemIcon>
-                        Thông tin tài khoản
+                        <Link to="/profile" style={{textDecoration: 'none', color: 'black'}}>
+                            Thông tin tài khoản
+                        </Link>
                     </MenuItem>
                     <MenuItem onClick={handleMenuClose}>
                         <ListItemIcon>
-                            <EventNote fontSize="small" />
+                            <EventNote fontSize="small"/>
                         </ListItemIcon>
-                        Nhật ký tư vấn
+                        <Link to="/consultation-log" style={{textDecoration: 'none', color: 'black'}}>
+                            Nhật ký tư vấn
+                        </Link>
                     </MenuItem>
-                    <MenuItem onClick={handleMenuClose}>
+                    <MenuItem onClick={handleLogout}>
                         <ListItemIcon>
-                            <Logout fontSize="small" />
+                            <Logout fontSize="small"/>
                         </ListItemIcon>
                         Đăng xuất
                     </MenuItem>

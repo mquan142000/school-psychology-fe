@@ -1,0 +1,17 @@
+{
+  "accountInfo": {
+    "username": "nguyenvana",
+    "email": "nguyenvana@example.com",
+    "password": "********"
+  },
+  "personalInfo": {
+    "fullName": "Nguyễn Văn A",
+    "gender": "Nam",
+    "birthdate": "2000-01-01",
+    "school": "Trường Đại học XYZ",
+    "class": "Công nghệ thông tin K15",
+    "phone": "0123456789",
+    "address": "123 Đường ABC, Quận 1, TP. Hồ Chí Minh",
+    "avatarUrl": "https://cdn.pixabay.com/photo/2024/12/06/12/23/ai-generated-9248643_640.jpg"
+  }
+}
