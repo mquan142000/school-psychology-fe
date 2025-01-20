@@ -45,8 +45,8 @@ const Sidebar = () => {
                 <Divider />
                 <ListItem
                     button
-                    onClick={() => navigate("/consultation-log")}
-                    selected={location.pathname === "/consultation-log"}
+                    onClick={() => navigate("/diary")}
+                    selected={location.pathname === "/diary"}
                 >
                     <ListItemIcon sx={{ minWidth: 60 }}>
                         <EventNoteIcon fontSize="large" />
